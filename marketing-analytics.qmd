@@ -10,7 +10,7 @@ A collection of data-driven marketing analytics work from the MS Digital Marketi
 
 # Capstone Project: Sino Yoga — Marketing Analytics Consulting
 
-**MSDM Culminating Experience Project &nbsp;|&nbsp; Fall 2025 – Spring 2026**
+**MSDM Culminating Experience Project &nbsp;|&nbsp; Fall 2025 – Summer 2026**
 **Team:** Stephanie Gutierrez, Marlen Garcia, Abby Ortiz, Erika Barajas
 **Faculty Lead:** Dr. Yi (Fionna) Xie
 
@@ -30,13 +30,14 @@ Our consulting team was brought in to answer the underlying question: **which ch
 
 ## How the project was structured
 
-This capstone was delivered across three MSDM courses over two semesters:
+This capstone is delivered across multiple MSDM courses over three semesters:
 
-| Course | Term | Focus |
+| Course(s) | Term | Focus |
 |---|---|---|
-| **IBM 6200** | Fall 2025 | Project foundation: client background, literature review, analytics objectives, methodology, and data wrangling plan |
-| **IBM 6400 & IBM 6800** | Spring 2026 | Primary analysis, modeling, and final client deliverables — this is where the heaviest analytical work lived |
-| **IBM 6530** | Spring 2026 | Marketing Analytics class deliverable applying course-specific tools (attribution, dashboarding, R/Quarto) to the same client |
+| **IBM 6200 / IBM 6500** | Fall 2025 | Project foundation: client background, literature review, analytics objectives, methodology, and data wrangling plan (Chapters 1–3) |
+| **IBM 6800 / IBM 6400** | Spring 2026 | Descriptive and predictive analysis, attribution modeling, recommendations, and final client deliverables (Chapters 4–5) |
+| **IBM 6530** | Spring 2026 | Marketing Analytics class deliverable applying course-specific tools (attribution modeling in R, dashboarding, Quarto reporting) to the same client |
+| **IBM 6950** *(Pending)* | Coming Summer 2026 | Implementation phase: putting approved recommendations into practice, measuring outcomes, and finalizing the post-implementation reflection and project report |
 
 Our team split the project across four Analytics Objectives:
 
@@ -80,10 +81,15 @@ This means a single-touch attribution approach would systematically undervalue t
 3. **Develop "bridge content."** Mid-funnel content (lead magnets, short tutorials, free trial classes) gives viewers a reason to leave YouTube before being asked to buy.
 4. **Invest in UTM tagging and consistent campaign tracking** so future attribution analysis can be precise rather than directional.
 
-## Deliverables
+## Project timeline
 
-- **Fall 2025:** Project Proposal Defense — Chapters 1–3 of the formal capstone report (Introduction, Background & Literature Review, Methods), presented to the faculty committee.
-- **Spring 2026:** Final Client Package — Chapters 4–5 (Analysis & Results, Recommendations), an analytics dashboard, and an in-person presentation to the client and faculty committee.
+This is a three-semester engagement still in progress:
+
+- **Fall 2025 (IBM 6200 / IBM 6500):** Project foundation — proposal defense covering client background, literature review, analytics objectives, and methodology (Chapters 1–3 of the formal capstone report).
+- **Spring 2026 (IBM 6800 / IBM 6400):** Analysis and recommendations — descriptive and predictive analysis, attribution modeling, and final client-facing recommendations (Chapters 4–5).
+- **Summer 2026 (IBM 6950) — upcoming:** Implementation phase — working with the client to put approved recommendations into practice, measuring before/after performance, and producing the final post-implementation reflection and project report.
+
+The implementation phase is the part of the engagement I'm most looking forward to: turning the strategic recommendations into tactical work and measuring whether they actually move the needle for the client.
 
 ::: {.callout-note appearance="minimal"}
 Final client deliverables (report, presentation slides, and dashboards) are kept private to respect the client relationship. A redacted overview can be discussed in interviews.
@@ -107,4 +113,4 @@ This page will be expanded with additional coursework from the MSDM program, inc
 - R-based predictive modeling work
 - Data visualization and dashboarding (Looker Studio, Quarto)
 
-Coursework drawn from IBM 6200, IBM 6400, IBM 6530, IBM 6800, and other MSDM core analytics classes.
+Coursework drawn from IBM 6200, IBM 6400, IBM 6500, IBM 6530, IBM 6800, IBM 6950, and other MSDM core analytics classes.
