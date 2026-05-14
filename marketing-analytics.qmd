@@ -1,5 +1,110 @@
 ---
 title: "Marketing Analytics"
+toc: true
+toc-location: right
 ---
 
-Coming soon — data-driven projects in attribution, segmentation, and performance analysis.
+A collection of data-driven marketing analytics work from the MS Digital Marketing program at Cal Poly Pomona, including the year-long capstone consulting project completed for an international wellness brand.
+
+---
+
+# Capstone Project: Sino Yoga — Marketing Analytics Consulting
+
+**MSDM Culminating Experience Project &nbsp;|&nbsp; Fall 2025 – Spring 2026**
+**Team:** Stephanie Gutierrez, Marlen Garcia, Abby Ortiz, Erika Barajas
+**Faculty Lead:** Dr. Yi (Fionna) Xie
+
+::: {.callout-tip appearance="simple"}
+**My focus area:** Multi-Channel Integration — analyzing how YouTube, WeChat, Facebook, and Sino Yoga's website work together across the customer journey, and how each channel contributes to discovery, engagement, and conversion.
+:::
+
+## The client
+
+**Sino Yoga** is a cross-cultural yoga and wellness brand founded by Yang Qi, integrating Traditional Chinese Medicine with yoga practice through her signature Five-Element Meridian Yoga method. The brand has a strong audience in China and is expanding into the U.S. market, with YouTube ([@Sinoyoga](https://www.youtube.com/@Sinoyoga)) as its primary discovery channel. Long-term, the business is building toward tiered, subscription-based memberships through its newly launched website.
+
+## The problem
+
+Sino Yoga had real reach — millions of views across YouTube — but the audience wasn't translating into measurable conversions in the U.S. market. The brand operated across **YouTube, WeChat, Facebook, and a new Shopify website**, but those platforms weren't working together as a cohesive funnel. Leadership had a lot of awareness but no clear picture of how (or whether) any of it was driving the business forward.
+
+Our consulting team was brought in to answer the underlying question: **which channels actually contribute to conversions, and how can Sino Yoga move users from passive viewers to paying members?**
+
+## How the project was structured
+
+This capstone was delivered across three MSDM courses over two semesters:
+
+| Course | Term | Focus |
+|---|---|---|
+| **IBM 6200** | Fall 2025 | Project foundation: client background, literature review, analytics objectives, methodology, and data wrangling plan |
+| **IBM 6400 & IBM 6800** | Spring 2026 | Primary analysis, modeling, and final client deliverables — this is where the heaviest analytical work lived |
+| **IBM 6530** | Spring 2026 | Marketing Analytics class deliverable applying course-specific tools (attribution, dashboarding, R/Quarto) to the same client |
+
+Our team split the project across four Analytics Objectives:
+
+| AO | Focus Area | Owner |
+|---|---|---|
+| **AO1** | SEO & Channel Visibility | Stephanie Gutierrez |
+| **AO2** | Audience Engagement & Content Strategy | Marlen Garcia |
+| **AO3** | Monetization Drivers & Conversion Behavior | Abby Ortiz |
+| **AO4** | **Multi-Channel Integration & Traffic Flow** | **Erika Barajas (me)** |
+
+## My contribution: Multi-Channel Integration
+
+In **Fall 2025**, my AO was framed as cross-platform integration — analyzing whether YouTube content was driving measurable traffic to the Sino Yoga website. As we moved into **Spring 2026** and the analysis deepened, the focus evolved into **multi-channel integration** more broadly: understanding how YouTube, WeChat, Facebook, and the website worked together (or didn't) across the customer journey, and how each channel contributed at different stages of discovery, engagement, and conversion.
+
+### Methods I used
+
+- **Primary data:** designed and analyzed an online survey distributed through Reddit and Facebook yoga communities to capture cross-platform behavior — how users discover yoga content, which platforms they trust, and what moves them from viewer to paying student
+- **Secondary data:** YouTube Analytics, platform-level referral data, and publicly observable channel performance
+- **Path modeling:** mapped multi-touch user journeys to model how users move between platforms
+- **Attribution modeling:** compared first-touch, last-touch, and linear attribution to surface where each channel earns credit at different stages of the funnel
+- **Tools:** R, SPSS, descriptive and predictive analytics
+
+### Key findings
+
+::: {.callout-note appearance="simple"}
+**The marketing funnel was strong at the top and weak at the bottom.** Sino Yoga's awareness generation was working — but the conversion pathway was unclear, and using last-touch attribution alone would have *underestimated* the role of YouTube and other top-of-funnel channels.
+:::
+
+Attribution analysis surfaced a clear pattern:
+
+- **First-Touch credit:** YouTube earned the majority of first-touch credit — confirming its role as the dominant discovery channel.
+- **Last-Touch credit:** The website captured most last-touch credit, with direct traffic close behind — but this view erased YouTube's discovery contribution entirely.
+- **Linear attribution** confirmed YouTube's role across the full journey, not just at the start.
+
+This means a single-touch attribution approach would systematically undervalue the exact channel Sino Yoga is investing in most heavily. The way the brand chooses to measure success directly determines which channels look like winners.
+
+### My recommendations to the client
+
+1. **Stop evaluating channels in isolation.** Single-touch attribution undervalues YouTube's discovery role; the brand needs a multi-touch view.
+2. **Strengthen the YouTube → Website bridge.** Add clearer CTAs in video descriptions, end screens, and pinned comments to move passive viewers into website visitors.
+3. **Develop "bridge content."** Mid-funnel content (lead magnets, short tutorials, free trial classes) gives viewers a reason to leave YouTube before being asked to buy.
+4. **Invest in UTM tagging and consistent campaign tracking** so future attribution analysis can be precise rather than directional.
+
+## Deliverables
+
+- **Fall 2025:** Project Proposal Defense — Chapters 1–3 of the formal capstone report (Introduction, Background & Literature Review, Methods), presented to the faculty committee.
+- **Spring 2026:** Final Client Package — Chapters 4–5 (Analysis & Results, Recommendations), an analytics dashboard, and an in-person presentation to the client and faculty committee.
+
+::: {.callout-note appearance="minimal"}
+Final client deliverables (report, presentation slides, and dashboards) are kept private to respect the client relationship. A redacted overview can be discussed in interviews.
+:::
+
+## What I learned
+
+- **Real consulting is messy.** The data was incomplete, the platforms didn't talk to each other, and the client's priorities shifted as we learned more. Working through that ambiguity was the actual lesson.
+- **Attribution models are storytelling tools.** Each model (first-touch, last-touch, linear) tells a different story about the same data. Choosing the right one — or showing several — depends on the decision you're trying to inform.
+- **Multi-channel work is hard.** Most marketing analytics writing assumes you have one platform's clean data. Real businesses have YouTube + WeChat + Facebook + a website + email + paid + organic — and tying that together is most of the job.
+- **Hospitality lessons carried over.** Understanding how a customer experiences a journey across multiple touchpoints is the same problem whether the journey ends in a yoga subscription or a wedding booking.
+
+---
+
+# Additional Marketing Analytics Work
+
+This page will be expanded with additional coursework from the MSDM program, including:
+
+- Customer segmentation projects
+- Marketing attribution exercises using GA4 → BigQuery data
+- R-based predictive modeling work
+- Data visualization and dashboarding (Looker Studio, Quarto)
+
+Coursework drawn from IBM 6200, IBM 6400, IBM 6530, IBM 6800, and other MSDM core analytics classes.
