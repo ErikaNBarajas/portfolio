@@ -1,0 +1,36 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Erika Barajas"
+  description: "Marketing professional bridging hospitality, sales, and data-driven strategy."
+  navbar:
+    background: primary
+    search: true
+    left:
+      - href: index.qmd
+        text: Home
+      - href: digital-marketing.qmd
+        text: Digital Marketing
+      - href: marketing-analytics.qmd
+        text: Marketing Analytics
+      - href: resume.qmd
+        text: Resume
+      - href: website-analytics.qmd
+        text: Site Analytics
+      - href: presentation.qmd
+        text: Presentation
+  page-footer:
+    left: "© 2026 Erika Barajas"
+    right:
+      - icon: linkedin
+        href: https://www.linkedin.com/
+      - icon: github
+        href: https://github.com/ErikaNBarajas/portfolio
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true

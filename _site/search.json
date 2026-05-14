@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Erika Barajas | Marketing Portfolio",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "digital-marketing.html",
+    "href": "digital-marketing.html",
+    "title": "Digital Marketing Projects",
+    "section": "",
+    "text": "Coming soon — case studies on content strategy, social media campaigns, and brand positioning."
+  },
+  {
+    "objectID": "marketing-analytics.html",
+    "href": "marketing-analytics.html",
+    "title": "Marketing Analytics",
+    "section": "",
+    "text": "Coming soon — data-driven projects in attribution, segmentation, and performance analysis."
+  },
+  {
+    "objectID": "presentation.html",
+    "href": "presentation.html",
+    "title": "Presentation",
+    "section": "",
+    "text": "Coming soon — Revealjs presentation slides."
+  },
+  {
+    "objectID": "resume.html",
+    "href": "resume.html",
+    "title": "Resume",
+    "section": "",
+    "text": "Coming soon."
+  },
+  {
+    "objectID": "website-analytics.html",
+    "href": "website-analytics.html",
+    "title": "Site Traffic Analytics",
+    "section": "",
+    "text": "Coming soon — analysis of this portfolio’s traffic data via GA4, BigQuery, and Looker Studio."
+  }
+]
