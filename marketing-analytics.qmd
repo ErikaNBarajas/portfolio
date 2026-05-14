@@ -59,20 +59,29 @@ In **Fall 2025**, my AO was framed as cross-platform integration — analyzing w
 - **Path modeling:** mapped multi-touch user journeys to model how users move between platforms
 - **Attribution modeling:** compared first-touch, last-touch, and linear attribution to surface where each channel earns credit at different stages of the funnel
 - **Tools:** R, SPSS, descriptive and predictive analytics
-
+  
 ### Key findings
 
 ::: {.callout-note appearance="simple"}
-**The marketing funnel was strong at the top and weak at the bottom.** Sino Yoga's awareness generation was working — but the conversion pathway was unclear, and using last-touch attribution alone would have *underestimated* the role of YouTube and other top-of-funnel channels.
+**The marketing funnel was strong at the top and weak at the bottom.** Sino Yoga's awareness generation was clearly working — but the conversion pathway was undefined, and the brand had no measurement infrastructure in place to attribute conversions across channels.
 :::
 
-Attribution analysis surfaced a clear pattern:
+### Working with limited client data
 
-- **First-Touch credit:** YouTube earned the majority of first-touch credit — confirming its role as the dominant discovery channel.
-- **Last-Touch credit:** The website captured most last-touch credit, with direct traffic close behind — but this view erased YouTube's discovery contribution entirely.
-- **Linear attribution** confirmed YouTube's role across the full journey, not just at the start.
+A key reality of this engagement: we did not have direct access to Sino Yoga's GA4 conversion tracking, paid platform analytics, or back-end membership data. Real-world consulting often begins before the measurement infrastructure does — and a meaningful part of our work was demonstrating to the client *what* analysis would look like once that infrastructure existed.
 
-This means a single-touch attribution approach would systematically undervalue the exact channel Sino Yoga is investing in most heavily. The way the brand chooses to measure success directly determines which channels look like winners.
+To do this, the attribution portion of my AO4 work was built on a **simplified, illustrative sample dataset** constructed to model realistic multi-touch user journeys. The goal was not to produce precise attribution numbers for Sino Yoga's actual business — it was to show our client how their channel mix would behave under different attribution models, and to make a concrete case for why their current measurement approach was insufficient.
+
+### What the modeling demonstrated
+
+Running the same sample dataset through three different attribution approaches surfaced exactly the pattern we expected for a top-of-funnel-heavy brand:
+
+- Under **First-Touch attribution**, YouTube earned the majority of credit — confirming its expected role as a discovery channel.
+- Under **Last-Touch attribution**, the website captured most of the credit — but this view erased YouTube's discovery contribution entirely.
+- Under **Linear attribution**, YouTube re-emerged across the full journey, not just at the start.
+- We also discussed **Markov chain attribution** as a more sophisticated next step — assigning credit based on each channel's actual contribution to conversion probability — to be implemented once real data is available.
+
+The exercise made a concrete case to the client: **measuring success by last-touch alone would systematically undervalue YouTube** — the exact channel they're investing in most heavily. The first step toward trustworthy attribution numbers isn't the model — it's the tracking infrastructure that feeds it.  
 
 ### My recommendations to the client
 
