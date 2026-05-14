@@ -1,5 +1,118 @@
 ---
 title: "Digital Marketing Projects"
+toc: true
+toc-location: right
 ---
 
-Coming soon — case studies on content strategy, social media campaigns, and brand positioning.
+A collection of digital marketing work demonstrating content strategy, SEO, and brand storytelling — drawn from coursework in the MS Digital Marketing program and from real-world hospitality experience at Cal Poly Pomona's Kellogg West Conference Center.
+
+---
+
+# Project 1: YouTube SEO Case Study — Cal Poly Pomona BRIC
+
+**Group project &nbsp;|&nbsp; Spring 2025 &nbsp;|&nbsp; SEO & Content Strategy**
+
+::: {.callout-tip appearance="simple"}
+**Result:** Ranked **#2** for the primary target keyword ("Cal Poly Pomona BRIC") and **#1** for "CPP BRIC" within days of publication, with an **11.5% click-through rate** and **43.6% average percentage viewed** — both well above typical YouTube benchmarks.
+:::
+
+## The brief
+
+Identify a topic with real search demand, conduct keyword research, then produce and publish an SEO-optimized YouTube video that could actually rank for its target keyword.
+
+## My role
+
+I contributed to keyword research (subtopic: wedding planning), recorded the voice-over for the final video, and helped shape the on-camera storytelling approach. As a team we owned every step from concept through publication and analytics review.
+
+## Strategy
+
+After comparing keyword opportunities across five different topics (wedding planning, college essentials, desk organization, Scrub Daddy reviews, and Cal Poly student life), we chose **"Cal Poly Pomona BRIC"** as our target keyword. The decision was deliberate:
+
+- **Demand:** 260 monthly searches — meaningful but not overwhelming
+- **Competition:** Low — few existing videos had the exact keyword perfectly optimized in title and description
+- **Audience fit:** Cal Poly Pomona students, a clearly defined and reachable audience
+- **Hook potential:** Most students don't realize the BRIC is already included in tuition — that became the angle
+
+## The video
+
+**Title:** *Cal Poly Pomona BRIC: The Hidden Gym You're Already Paying For*
+
+**Why this title works:**
+
+- Leads with the exact target keyword (YouTube weights the first words heavily)
+- The phrase "Already Paying For" creates curiosity and signals value
+- Conversational tone differentiates it from competing tour-style videos
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Yz-NHwnVpJ0" title="Cal Poly Pomona BRIC: The Hidden Gym You're Already Paying For" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+## Results
+
+After publication, we tracked performance across YouTube Analytics:
+
+| Metric | Result |
+|---|---|
+| Ranking for "Cal Poly Pomona BRIC" | **#2** |
+| Ranking for "CPP BRIC" | **#1** |
+| Impressions (first 3 days) | 217 |
+| Click-through rate | **11.5%** *(above the ~4–6% YouTube avg)* |
+| Views | 159 |
+| Average view duration | 1:16 (43.6% of video) |
+| Top external traffic source | Reddit (54.6% of external referrals) |
+| Engagement goal (10 likes, 5 comments in 24 hrs) | ✅ Met |
+
+## What this taught me
+
+- **Long-tail keyword strategy works.** Picking a specific, low-competition keyword beat trying to compete for broad terms like "college gym tour."
+- **The first 30 seconds matter most.** Our retention chart showed the biggest drop-off in the first 30 seconds — a lesson that informs every short-form content decision.
+- **SEO is creative work.** The title that ranked wasn't the most descriptive — it was the most *curious*. Optimization and storytelling aren't separate skills.
+- **Analytics close the loop.** Without the YouTube Analytics review, we'd never have known that Reddit was sending us 54.6% of external traffic — a community we hadn't deliberately targeted.
+
+## What I'd do differently
+
+- Use stronger overlay graphics during list segments ("5 Essentials") to support retention
+- Ask a direct question in the description to seed more comments
+- Coordinate with student creators or campus accounts earlier for cross-promotion
+
+---
+
+# Project 2: CRM Implementation — Event Temple at Kellogg West
+
+**Real-world project &nbsp;|&nbsp; 2024 – Present &nbsp;|&nbsp; Marketing Operations & Data Infrastructure**
+
+## The situation
+
+When I stepped into the Sales Manager role at Kellogg West Conference Center, the operation was in the middle of a difficult transition. We had cycled through several general managers, we were short-staffed, and our sales process was held together by spreadsheets, email threads, and institutional knowledge that lived in individual people's heads. Client data was fragmented. Booking pipelines were tracked manually. Reporting was reactive, not strategic.
+
+I had been advocating for a CRM for some time, but previous leadership didn't see the urgency. During the leadership transition, my company brought in a consultant — a counterpart to my role on the university side — to help me navigate the operation while we were down a GM. The two of us reviewed everything that was breaking, and the case for a CRM kept surfacing as the highest-leverage fix.
+
+When our new general manager came on board (a 20+ year hospitality veteran from Marriott and other major hotel groups), he immediately agreed. He selected **Event Temple** as the platform — and from there, the work fell to me.
+
+## What I owned
+
+- **Historical data migration** — I needed to get **1.5 years of booking, client, and event history** into the new system. That meant auditing where data lived (multiple spreadsheets, email folders, paper files), cleaning and standardizing it, and structuring it for a CRM's account/contact/booking architecture.
+- **Live team training** — onboarding the existing team onto a tool none of them had used, while everyone was still actively booking events. There was no "implementation phase" where business paused.
+- **Continued sales operations** — keeping conferences, weddings, and special events booking on schedule throughout the transition. Clients had no idea the back-end was being rebuilt under them, which was the goal.
+- **Process documentation** — creating the playbook for how the sales team uses Event Temple day-to-day, so future hires can be brought up quickly.
+
+## Why this is a marketing project
+
+CRM implementation is often framed as an "operations" project, but it's fundamentally a **marketing data infrastructure** decision. A CRM determines:
+
+- What you can measure about your customer relationships
+- How quickly you can respond to inbound leads
+- Whether your marketing efforts are attributable to actual revenue
+- How well sales and marketing can collaborate
+
+Without good CRM data, every other marketing decision is guesswork. Implementing Event Temple wasn't just an IT project — it was building the foundation for *every* data-driven marketing decision Kellogg West will make from here forward.
+
+## The strategic next step
+
+The natural next step in any hospitality marketing stack is connecting CRM data to web analytics — tagging marketing campaigns properly, tracking which channels drive inbound inquiries, and tying actual bookings back to the marketing efforts that produced them.
+
+The MSDM coursework I've been doing — GA4, BigQuery, attribution modeling, and dashboarding in Looker Studio — is built exactly around that problem: *which marketing efforts actually drive revenue, and how do we prove it?*
+
+---
+
+# More projects coming soon
+
+This page is being expanded with additional coursework from the MSDM program, including consumer behavior analyses, segmentation projects, and digital strategy work.
