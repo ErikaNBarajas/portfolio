@@ -1,5 +1,118 @@
 ---
 title: "Resume"
+toc: true
+toc-location: right
 ---
 
-Coming soon.
+::: {.callout-note appearance="minimal"}
+**Erika Barajas** &nbsp;•&nbsp; [enbarajas@cpp.edu](mailto:enbarajas@cpp.edu) &nbsp;•&nbsp; [LinkedIn](https://www.linkedin.com/in/erika-b-6b3720147/) &nbsp;•&nbsp; [GitHub](https://github.com/ErikaNBarajas/portfolio)
+:::
+
+## Professional Summary
+
+Hospitality sales and operations professional with over a decade of experience across Cal Poly Pomona Enterprises, currently serving as Sales Manager at Kellogg West Conference Center. Skilled in client relations, event coordination, team building, and CRM implementation. Pursuing an MS in Digital Marketing to bring data-driven decision-making to venue sales and event marketing.
+
+---
+
+## Education
+
+### Master of Science, Digital Marketing
+**California State Polytechnic University, Pomona** &nbsp;|&nbsp; *2024 – 2026*
+
+### Bachelor of Arts, Liberal Studies
+**California State Polytechnic University, Pomona** &nbsp;|&nbsp; *2012 – 2014*
+
+### General Education
+**Rio Hondo College** &nbsp;|&nbsp; *2008 – 2011*
+
+---
+
+## Work Experience
+
+### Sales Manager
+**Kellogg West Conference Center — Cal Poly Pomona Enterprises** &nbsp;|&nbsp; *2024 – Present*
+
+- Lead the Sales department for conferences, weddings, special events, and campus catering
+- Hired, onboarded, and developed a new sales team from the ground up
+- Implemented Event Temple CRM from scratch to centralize client data, bookings, and pipeline management
+- Maintain key client relationships and serve as primary contact for high-profile bookings
+- Continue to lead historical Kellogg House tours and serve as day-of coordinator for weddings and special events
+
+**Career progression at Kellogg West (2021–2024):**
+
+- *Sales Lead (acting)* &nbsp;|&nbsp; Feb 2023 – 2024 &nbsp;—&nbsp; ran Sales department as sole full-time employee covering all conferences and events
+- *Catering Operations Assistant Manager* &nbsp;|&nbsp; Aug 2022 – Feb 2023 &nbsp;—&nbsp; coordinated sales–catering execution and event staffing
+- *Weddings & Special Events Lead (interim)* &nbsp;|&nbsp; Dec 2021 – Aug 2022 &nbsp;—&nbsp; took over weddings programming during leadership transition
+- *Supervisor* &nbsp;|&nbsp; Oct 2021 – Dec 2021 &nbsp;—&nbsp; joined Kellogg West parallel to prior dining services role
+
+---
+
+### Floor Supervisor
+**Dining Services (Round Table Pizza) — Cal Poly Pomona Enterprises** &nbsp;|&nbsp; *2017 – 2021*
+
+- Redesigned and improved operational procedures
+- Monitored daily, weekly, and monthly sales
+- Practiced strategic labor management and coached shift leads
+- Reopened 2 franchise locations post-COVID, recruiting and onboarding entire staff under firm reopening protocols
+
+---
+
+### Shift Lead
+**Einstein Bros Bagels — Cal Poly Pomona Enterprises** &nbsp;|&nbsp; *2013 – 2017*
+
+- Acted as liaison between supervisors and front-line staff
+- Set shift assignments and goals
+- Implemented franchise and health code policies
+- Reported daily inventory and assisted in ordering
+- Cross-trained in catering operations
+
+---
+
+### After School Teacher & Tutor
+**School Connection** &nbsp;|&nbsp; *2014 – 2017*
+
+- Identified individual learning needs and adapted lessons accordingly
+- Created weekly comprehension assessments
+- Managed classrooms of 13–15 students across multiple age groups
+- Provided daily progress reports to parents
+
+---
+
+## Skills
+
+**Hospitality & Sales**
+
+- Client relations and account management
+- Event sales, pricing, and proposal development
+- Wedding and special event coordination
+- Catering and operations management
+- Team hiring, onboarding, and development
+
+**Tools & Technology**
+
+- CRM: Event Temple (implementation experience)
+- Marketing analytics: Google Analytics 4, Google Tag Manager, Google BigQuery, Looker Studio
+- Data & reporting: R, Quarto, GitHub, Excel
+- Event management: 25Live, Social Tables, AdobeSign
+
+**Communication & Leadership**
+
+- Cross-functional team collaboration
+- Working effectively under deadlines and pressure
+- Analytical problem-solving
+- Bilingual: English (native), Spanish (conversational)
+
+---
+
+## Currently Studying
+
+**MS in Digital Marketing — Coursework Highlights**
+
+- Marketing Analytics (R, GA4, BigQuery, attribution modeling)
+- Digital Marketing Strategy
+- Consumer Behavior & Insights
+- Data Visualization & Reporting
+
+---
+
+*Last updated: May 2026*
