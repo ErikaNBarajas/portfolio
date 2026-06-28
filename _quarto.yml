@@ -5,6 +5,8 @@ project:
 website:
   title: "Erika Barajas"
   description: "Marketing professional bridging hospitality, sales, and data-driven strategy."
+  google-analytics: "G-KKR8HF8QY8"  
+  cookie-consent: true
   navbar:
     background: primary
     search: true
