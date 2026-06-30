@@ -1,0 +1,56 @@
+/*-- scss:defaults --*/
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap');
+
+// Palette (matches the website theme)
+$body-bg:        #FAF7F2;
+$body-color:     #2A2A2E;
+$link-color:     #C4593B;
+$selection-bg:   #DC8E6E;
+
+// Typography
+$font-family-sans-serif:        "Inter", system-ui, -apple-system, sans-serif;
+$presentation-font-size-root:   32px;
+$presentation-heading-font:     "Fraunces", Georgia, serif;
+$presentation-heading-color:    #2A2A2E;
+$presentation-heading-font-weight: 600;
+$presentation-title-slide-text-align: left;
+
+/*-- scss:rules --*/
+
+.reveal h1, .reveal h2, .reveal h3 {
+  letter-spacing: -0.01em;
+}
+
+.reveal section.title-slide h1.title {
+  font-weight: 700;
+}
+
+.reveal .subtitle,
+.reveal section.title-slide .subtitle {
+  color: #C4593B;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.reveal a { color: #C4593B; }
+
+.reveal .slide-number,
+.reveal .slide-number a { color: #C4593B; }
+
+.reveal .footer {
+  color: #71717A;
+  font-family: "Inter", sans-serif;
+  font-size: 0.5em;
+}
+
+// Terracotta accent helper for inline emphasis
+.accent { color: #C4593B; font-weight: 600; }
+
+// Code and tables sized for slides
+.reveal pre code { font-size: 0.78em; line-height: 1.4; }
+.reveal table { font-size: 0.8em; }
+.reveal table thead th { border-bottom: 2px solid rgba(42,42,46,0.3); }
+
+// A little breathing room on bullets
+.reveal ul li { margin-bottom: 0.4em; }

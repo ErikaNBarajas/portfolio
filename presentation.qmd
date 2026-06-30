@@ -1,5 +1,235 @@
 ---
-title: "Presentation"
+title: "Marketing Analytics in Practice"
+subtitle: "Building a Reproducible GA4 → BigQuery → R Pipeline"
+author: "Erika Barajas"
+institute: "MS Digital Marketing · Cal Poly Pomona"
+date: last-modified
+date-format: "MMMM YYYY"
+format:
+  revealjs:
+    theme: [default, slides.scss]
+    slide-number: true
+    transition: fade
+    footer: "Erika Barajas · MS Digital Marketing · Cal Poly Pomona"
+    highlight-style: github
+    code-line-numbers: false
 ---
 
-Coming soon — Revealjs presentation slides.
+## Who I am {.smaller}
+
+Sales Manager at Kellogg West Conference Center, with over a decade across Cal Poly Pomona hospitality.
+
+Running Instagram for our venues is what pulled me toward marketing. I kept seeing content decisions made on instinct, with no data behind them.
+
+I am pursuing my MS in Digital Marketing to close that gap: to bring evidence to decisions that used to be guesses.
+
+::: {.notes}
+Keep this short. One or two sentences out loud. I am a hospitality sales manager who got into marketing through running social media, and I am studying analytics to make those decisions data driven. Then move on quickly, because this talk is about skills, not my biography.
+:::
+
+## What this presentation shows {.smaller}
+
+A live demonstration of the analytics workflow I learned in the program, built on real data I collected myself.
+
+- **Collect** traffic with Google Analytics 4
+- **Store** it in BigQuery
+- **Query** it with SQL from R
+- **Report** it reproducibly with Quarto
+- **Model** channel value with attribution
+
+No mock data and no screenshots of someone else's dashboard. This is my own portfolio's traffic, end to end.
+
+::: {.notes}
+This slide is the roadmap. Tell the audience that everything they are about to see runs on my own portfolio site's real traffic, which I think is the strongest way to prove I can actually do this rather than just talk about it.
+:::
+
+## The question I set out to answer
+
+> Can I measure my own portfolio the way a marketing team measures a brand?
+
+That means standing up real tracking, moving the data into a warehouse, analyzing it in code, and turning it into a report anyone could reproduce.
+
+::: {.notes}
+Frame it as a real question. I treated my own website like a client. The goal was to build the same measurement stack a marketing team would use, just at a small scale, so I could prove the workflow works.
+:::
+
+## The pipeline
+
+```{mermaid}
+flowchart LR
+  A[Website visit] --> B[GA4 tag<br/>on every page]
+  B --> C[(BigQuery<br/>daily export)]
+  C --> D[R + bigrquery<br/>SQL queries]
+  D --> E[Quarto report<br/>gt + ggplot2]
+  E --> F[Published<br/>on my live site]
+```
+
+Five stages, each one a skill from the program.
+
+::: {.notes}
+Walk left to right. A visit hits the GA4 tag, GA4 exports the events to BigQuery once a day, I query that data from R using bigrquery, I build the tables and charts with gt and ggplot2 inside Quarto, and the whole thing publishes to my live site. Each arrow is a tool I learned in this program.
+:::
+
+## Step 1 · Collection with GA4 {.smaller}
+
+I added a GA4 tag to every page of the site, then linked the property to BigQuery and turned on the daily export.
+
+- GA4 records each visit as an **event**
+- The BigQuery link sends those events to a warehouse table every day
+- Each day becomes its own `events_` table
+
+From this point on, the data lives somewhere I can query it with code.
+
+::: {.notes}
+Explain that GA4 is event based, not page based like older analytics. The important move here is the BigQuery link. Once events land in BigQuery, I am no longer stuck clicking around the GA4 interface. I can write real queries.
+:::
+
+## Step 2 · Querying with BigQuery SQL {.smaller}
+
+GA4 data is nested, so I use SQL to flatten and summarize it. Here is the headline query:
+
+```sql
+SELECT
+  COUNT(DISTINCT user_pseudo_id) AS total_users,
+  COUNT(DISTINCT CONCAT(
+    user_pseudo_id,
+    CAST((SELECT value.int_value FROM UNNEST(event_params)
+          WHERE key = 'ga_session_id') AS STRING)
+  )) AS total_sessions,
+  COUNTIF(event_name = 'page_view') AS total_page_views
+FROM `analytics_543432183.events_*`
+```
+
+`UNNEST` reaches into GA4's nested event parameters to rebuild a session count.
+
+::: {.notes}
+This is the slide where I show I can actually write BigQuery SQL, not just point and click. The tricky part of GA4 data is that it is nested. The event parameters are arrays inside each row. UNNEST is how you reach into them. I use it here to pull the session id back out and count distinct sessions.
+:::
+
+## Step 3 · Analysis in R {.smaller}
+
+From R, I connect to BigQuery with `bigrquery` and run the same queries, then shape the results with the tidyverse:
+
+```r
+library(bigrquery); library(DBI); library(tidyverse); library(gt)
+
+con <- dbConnect(bigrquery::bigquery(),
+                 project = "ibm-6530-487205",
+                 billing = "ibm-6530-487205")
+
+headline <- dbGetQuery(con, sql_headline)   # SQL runs in BigQuery
+headline |> gt()                            # publishable table in R
+```
+
+The heavy lifting happens in BigQuery; R handles the analysis and presentation.
+
+::: {.notes}
+The point here is that I can move between SQL and R. BigQuery does the heavy computation on the server, and R pulls back a small summarized result that I turn into a clean table with gt or a chart with ggplot2. This is the reproducible reporting workflow the whole program is built around.
+:::
+
+## What the data showed {.smaller}
+
+::: {.columns}
+::: {.column width="45%"}
+**Headline numbers**
+
+| Metric | Value |
+|---|---|
+| Users | 5 |
+| Sessions | 5 |
+| Page views | 14 |
+:::
+::: {.column width="55%"}
+**Top pages**
+
+| Page | Views |
+|---|---|
+| Home | 7 |
+| Presentation | 2 |
+| Site Analytics | 2 |
+| Project pages | 3 |
+:::
+:::
+
+Small numbers, because the site is new. But the pattern is real: visitors land on Home, then click into the work.
+
+::: {.notes}
+Be honest that the numbers are small because the site just launched. That is fine. The point is not the volume, it is that this is real data flowing through a working pipeline, and even at this scale it tells a story: people arrive on the home page and then explore the project pages. As traffic grows, the same code keeps working with zero changes.
+:::
+
+## Beyond traffic · Attribution modeling {.smaller}
+
+Counting visits is descriptive. The program also taught me to model **which channels deserve credit** for a conversion.
+
+Using an illustrative multi-touch dataset, I compared three approaches:
+
+- **First-touch**: all credit to the discovery channel
+- **Last-touch**: all credit to the final click
+- **Linear**: credit spread across the journey
+
+::: {.notes}
+Pivot from descriptive analytics to modeling. Counting users is one skill. Attribution is a more advanced one. I want to show I understand that a single conversion usually involves several touchpoints, and that how you assign credit changes which channel looks valuable.
+:::
+
+## Why the model choice matters {.smaller}
+
+The same data tells different stories depending on the model:
+
+- Judge channels by **last-touch alone** and you systematically undervalue discovery channels like video and social
+- A **multi-touch view** reveals contributions that single-touch models erase
+
+The takeaway I carried into my capstone work: **the model is a storytelling tool, and the right one depends on the decision you are trying to inform.**
+
+::: {.notes}
+This is the insight slide. The lesson is that attribution models are not neutral. Last touch makes the bottom of the funnel look like the hero and erases everything that built awareness. If a brand only measures last touch, it will cut exactly the discovery spending that feeds the funnel. Choosing the model is a strategic decision, not just a technical one. Note: I keep this generic and never name a client.
+:::
+
+## Skills demonstrated {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**Analytics & data**
+
+- GA4 and Google Tag Manager
+- BigQuery SQL (nested data, `UNNEST`)
+- R: `bigrquery`, `dbplyr`, tidyverse
+- Attribution modeling
+:::
+::: {.column width="50%"}
+**Reporting & delivery**
+
+- Quarto reproducible reports
+- `gt` tables and `ggplot2`
+- Looker Studio dashboards
+- Git, GitHub, and Netlify deploys
+:::
+:::
+
+Every item here appears in the live site, not just on this slide.
+
+::: {.notes}
+This is the proof slide for the rubric. Read a few highlights, do not list every single one out loud. Emphasize that all of this is verifiable on my actual website, which is the whole reason for building the portfolio this way.
+:::
+
+## What's next
+
+- Let my own traffic accumulate, then swap the live data into the analysis. The code is already written for it.
+- Apply this exact workflow to hospitality marketing: tie content and campaigns to real bookings.
+
+Bridging instinct and evidence is the reason I started this program, and it is the thread through all of this work.
+
+::: {.notes}
+Close by connecting back to the opening. The pipeline is built to grow, and the real goal is to bring this kind of measurement into hospitality marketing, where so many decisions are still made on gut feel. That is the gap I want to fill.
+:::
+
+## Thank you {.smaller}
+
+**Erika Barajas**
+
+Portfolio: [erika-barajas-portfolio.netlify.app](https://erika-barajas-portfolio.netlify.app)
+
+[LinkedIn](https://www.linkedin.com/in/erika-b-6b3720147/) · [GitHub](https://github.com/ErikaNBarajas) · enbarajas@cpp.edu
+
+::: {.notes}
+Thank the audience, point them to the live site so they can see everything running for real, and invite questions.
+:::
