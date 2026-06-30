@@ -1,0 +1,148 @@
+/*-- scss:defaults --*/
+
+// Fonts: Fraunces (warm modern serif) for headings, Inter for body
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
+
+// ---- Palette ---------------------------------------------------------------
+$charcoal:     #2A2A2E;   // primary text + navbar
+$charcoal-2:   #4A4A52;
+$cream:        #FAF7F2;   // warm off-white background
+$accent:       #C4593B;   // terracotta (the one bold accent)
+$accent-soft:  #DC8E6E;   // lighter terracotta for hovers/subheads
+$muted:        #71717A;
+$rule:         rgba(42, 42, 46, 0.10);
+
+// ---- Bootstrap variable overrides -----------------------------------------
+$body-bg:            $cream;
+$body-color:         $charcoal;
+$primary:            $accent;
+$dark:               $charcoal;
+$link-color:         $accent;
+$link-hover-color:   darken($accent, 12%);
+
+$font-family-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+$headings-font-family:   "Fraunces", Georgia, "Times New Roman", serif;
+$headings-font-weight:   600;
+$headings-color:         $charcoal;
+
+$body-font-size:     1.05rem;
+$line-height-base:   1.65;
+$h1-font-size:       2.6rem;
+$h2-font-size:       1.9rem;
+
+/*-- scss:rules --*/
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+// ---- Headings --------------------------------------------------------------
+h1, .h1 {
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin-bottom: 1.25rem;
+}
+
+h2, .h2 {
+  font-weight: 600;
+  margin-top: 2.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid rgba($accent, 0.22);
+}
+
+h3, .h3 {
+  color: $accent;
+  font-weight: 600;
+  margin-top: 1.75rem;
+}
+
+// ---- Navbar ----------------------------------------------------------------
+.navbar {
+  font-family: $headings-font-family;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: 0.005em;
+}
+
+.navbar .nav-link {
+  font-weight: 500;
+  font-size: 1.02rem;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: $accent-soft !important;
+}
+
+// ---- Links -----------------------------------------------------------------
+a {
+  text-underline-offset: 2px;
+  transition: color 0.15s ease;
+}
+
+// ---- Buttons & about-page link pills --------------------------------------
+.btn {
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+.btn-primary,
+.about-links .about-link {
+  background-color: $accent;
+  border-color: $accent;
+  color: #fff !important; 
+}
+
+.btn-primary:hover,
+.about-links .about-link:hover {
+  background-color: darken($accent, 10%);
+  border-color: darken($accent, 10%);
+  color: #fff;
+}
+
+// ---- Landing headshot (trestles about template) ---------------------------
+.quarto-about-trestles .about-image,
+.about-image,
+img.rounded,
+img.round {
+  border: 4px solid #fff;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.13);
+}
+
+// ---- Tables ----------------------------------------------------------------
+.table {
+  font-size: 0.97rem;
+}
+
+.table thead th {
+  border-bottom: 2px solid rgba($charcoal, 0.28);
+  font-weight: 600;
+}
+
+// ---- Callouts: warm accent edge -------------------------------------------
+div.callout-note.callout {
+  border-left-color: $accent;
+}
+
+// ---- Right-hand table of contents -----------------------------------------
+.sidebar nav[role="doc-toc"] ul > li > a.active,
+#TOC a.active {
+  color: $accent;
+  border-left-color: $accent;
+}
+
+// ---- Footer ----------------------------------------------------------------
+.nav-footer {
+  border-top: 1px solid $rule;
+  font-size: 0.92rem;
+}
+
+// ---- Generous reading rhythm ----------------------------------------------
+main p {
+  margin-bottom: 1.05rem;
+}

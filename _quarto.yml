@@ -8,7 +8,7 @@ website:
   google-analytics: "G-KKR8HF8QY8"  
   cookie-consent: true
   navbar:
-    background: primary
+    background: dark
     search: true
     left:
       - href: index.qmd
@@ -33,6 +33,6 @@ website:
 
 format:
   html:
-    theme: cosmo
+    theme: [cosmo, theme.scss]
     css: styles.css
     toc: true

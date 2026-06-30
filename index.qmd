@@ -1,5 +1,6 @@
 ---
-title: "Erika Barajas"
+title: "Erika Barajas"  
+toc: false
 image: images/headshot.jpg
 about:
   template: trestles
