@@ -1,5 +1,274 @@
 ---
 title: "Site Traffic Analytics"
+toc: true
+toc-location: right
+code-fold: true
+code-summary: "Show code"
+execute:
+  freeze: true
+  echo: true
+  warning: false
+  message: false
 ---
 
-Coming soon — analysis of this portfolio's traffic data via GA4, BigQuery, and Looker Studio.
+This page analyzes the real traffic to this portfolio site. When I built the site, I added a Google Analytics 4 tag, linked the property to BigQuery, and turned on the daily export. Every visit now flows from GA4 into a BigQuery table that I query directly from R. This page is that pipeline working end to end: GA4 collects the events, BigQuery stores them, and R and Quarto turn them into the analysis below.
+
+::: {.callout-note appearance="simple"}
+**A note on the data.** This site is newly launched, so the numbers here reflect early traffic rather than months of history. I built the page on my own live data on purpose. The point is to show the full GA4 to BigQuery to R workflow on real events I collected myself, and the analysis will only get richer as the export accumulates more days.
+:::
+
+```{r}
+#| label: setup
+library(bigrquery)
+library(DBI)
+library(tidyverse)
+library(gt)
+
+
+project_id  <- "ibm-6530-487205"
+ga4_dataset <- "analytics_543432183"
+
+events_tbl <- paste0("`", project_id, ".", ga4_dataset, ".events_*`")
+
+con <- dbConnect(
+  bigrquery::bigquery(),
+  project = project_id,
+  billing = project_id
+)
+
+# A small house style so every chart on the page looks consistent
+bar_fill <- "#2c6e91"
+theme_set(theme_minimal(base_size = 12))
+```
+
+## Headline metrics
+
+The quickest read on the site: how many people have visited, how many sessions they started, and how many pages they looked at over the period I have data for.
+
+```{r}
+#| label: headline
+sql_headline <- paste0("
+  SELECT
+    MIN(PARSE_DATE('%Y%m%d', event_date)) AS first_day,
+    MAX(PARSE_DATE('%Y%m%d', event_date)) AS last_day,
+    COUNT(DISTINCT user_pseudo_id) AS total_users,
+    COUNT(DISTINCT CONCAT(
+      user_pseudo_id,
+      CAST((SELECT value.int_value FROM UNNEST(event_params)
+            WHERE key = 'ga_session_id') AS STRING)
+    )) AS total_sessions,
+    COUNTIF(event_name = 'page_view') AS total_page_views
+  FROM ", events_tbl, "
+")
+
+headline <- dbGetQuery(con, sql_headline)
+
+headline |>
+  transmute(
+    `Date range`   = paste(format(first_day, "%b %d"), "to", format(last_day, "%b %d, %Y")),
+    `Total users`  = total_users,
+    `Sessions`     = total_sessions,
+    `Page views`   = total_page_views
+  ) |>
+  gt() |>
+  tab_header(title = "Portfolio traffic at a glance") |>
+  fmt_number(columns = c(`Total users`, `Sessions`, `Page views`), decimals = 0) |>
+  cols_align(align = "center") |>
+  tab_options(table.font.size = px(15), heading.title.font.size = px(18))
+```
+
+## Users and sessions over time
+
+Tracking users and sessions by day shows whether traffic is steady or spiky. With a young site, this is mostly a baseline to build on as more days of export come in.
+
+```{r}
+#| label: over-time
+#| output: asis
+sql_daily <- paste0("
+  SELECT
+    PARSE_DATE('%Y%m%d', event_date) AS date,
+    COUNT(DISTINCT user_pseudo_id) AS users,
+    COUNT(DISTINCT CONCAT(
+      user_pseudo_id,
+      CAST((SELECT value.int_value FROM UNNEST(event_params)
+            WHERE key = 'ga_session_id') AS STRING)
+    )) AS sessions
+  FROM ", events_tbl, "
+  GROUP BY date
+  ORDER BY date
+")
+
+daily <- dbGetQuery(con, sql_daily)
+
+# With only one day of export, a trend line is not meaningful yet, so show a
+# short note instead. Once a few daily tables have accumulated, the real chart
+# renders automatically.
+if (dplyr::n_distinct(daily$date) >= 2) {
+  p <- daily |>
+    pivot_longer(c(users, sessions), names_to = "metric", values_to = "count") |>
+    ggplot(aes(date, count, color = metric)) +
+    geom_line(linewidth = 1) +
+    geom_point(size = 2) +
+    scale_color_manual(values = c(users = "#2c6e91", sessions = "#e76f51"),
+                       labels = c("Users", "Sessions")) +
+    scale_x_date(date_labels = "%b %d") +
+    scale_y_continuous(limits = c(0, NA), breaks = scales::breaks_pretty()) +
+    labs(x = NULL, y = NULL, color = NULL,
+         title = "Daily users and sessions") +
+    theme(legend.position = "top")
+  print(p)
+} else {
+  cat('::: {.callout-note appearance="simple"}\n',
+      '**This chart builds as data accumulates.** With a single day of export so far, ',
+      'a day-over-day trend is not yet meaningful. It will fill in on its own as more ',
+      'daily GA4 exports land.\n',
+      ':::\n', sep = '')
+}
+```
+
+## Where my visitors come from
+
+This groups traffic by source and medium, which is the GA4 way of describing how someone arrived (a direct visit, a link from another site, a search, and so on). For a portfolio I share by link, I expect a lot of direct and referral traffic, and this confirms it.
+
+```{r}
+#| label: sources
+sql_sources <- paste0("
+  SELECT
+    COALESCE(traffic_source.source, '(direct)') AS source,
+    COALESCE(traffic_source.medium, '(none)')   AS medium,
+    COUNT(DISTINCT user_pseudo_id) AS users
+  FROM ", events_tbl, "
+  GROUP BY source, medium
+  ORDER BY users DESC
+")
+
+sources <- dbGetQuery(con, sql_sources)
+
+sources |>
+  gt() |>
+  tab_header(title = "Traffic by source and medium") |>
+  cols_label(source = "Source", medium = "Medium", users = "Users") |>
+  fmt_number(columns = users, decimals = 0) |>
+  tab_options(table.font.size = px(14))
+```
+
+```{r}
+#| label: sources-plot
+#| output: asis
+# A bar chart with a single channel just shows one full-width bar, so when
+# there is only one source/medium, show a short note instead.
+if (nrow(sources) >= 2) {
+  p <- sources |>
+    mutate(channel = paste(source, medium, sep = " / ")) |>
+    slice_max(users, n = 8) |>
+    ggplot(aes(reorder(channel, users), users)) +
+    geom_col(fill = bar_fill, width = 0.7) +
+    coord_flip() +
+    scale_y_continuous(breaks = scales::breaks_pretty()) +
+    labs(x = NULL, y = "Users", title = "Top acquisition channels")
+  print(p)
+} else {
+  cat('::: {.callout-note appearance="simple"}\n',
+      '**One channel so far.** Every visit to date arrived directly through a shared link, ',
+      'so there is a single acquisition channel to report. This view becomes more useful ',
+      'once referral, search, or social traffic starts to appear.\n',
+      ':::\n', sep = '')
+}
+```
+
+## Top pages
+
+Which pages people actually open tells me what the site is doing well and where attention goes first. I cleaned the full URLs down to just the path so the table is easy to read.
+
+```{r}
+#| label: top-pages
+sql_pages <- paste0("
+  SELECT
+    (SELECT value.string_value FROM UNNEST(event_params)
+       WHERE key = 'page_location') AS page_location,
+    COUNT(*) AS views
+  FROM ", events_tbl, "
+  WHERE event_name = 'page_view'
+  GROUP BY page_location
+  ORDER BY views DESC
+  LIMIT 15
+")
+
+pages <- dbGetQuery(con, sql_pages)
+
+pages |>
+  mutate(
+    path = sub("^https?://[^/]+", "", page_location),
+    path = ifelse(path == "" | is.na(path), "/", path)
+  ) |>
+  select(path, views) |>
+  gt() |>
+  tab_header(title = "Most viewed pages") |>
+  cols_label(path = "Page", views = "Views") |>
+  fmt_number(columns = views, decimals = 0) |>
+  tab_options(table.font.size = px(14))
+```
+
+## Devices and geography
+
+A quick look at the kind of device people browse on and where they are. For a portfolio that hiring managers might open on a phone between meetings, the device split is genuinely useful to know.
+
+```{r}
+#| label: devices
+sql_devices <- paste0("
+  SELECT
+    device.category AS device_category,
+    COUNT(DISTINCT user_pseudo_id) AS users
+  FROM ", events_tbl, "
+  GROUP BY device_category
+  ORDER BY users DESC
+")
+
+devices <- dbGetQuery(con, sql_devices)
+
+devices |>
+  filter(!is.na(device_category)) |>
+  ggplot(aes(reorder(device_category, users), users)) +
+  geom_col(fill = bar_fill) +
+  coord_flip() +
+  labs(x = NULL, y = "Users", title = "Users by device category")
+```
+
+```{r}
+#| label: geography
+sql_geo <- paste0("
+  SELECT
+    COALESCE(geo.country, '(unknown)') AS country,
+    COUNT(DISTINCT user_pseudo_id) AS users
+  FROM ", events_tbl, "
+  GROUP BY country
+  ORDER BY users DESC
+  LIMIT 10
+")
+
+geo <- dbGetQuery(con, sql_geo)
+
+geo |>
+  gt() |>
+  tab_header(title = "Visitors by country") |>
+  cols_label(country = "Country", users = "Users") |>
+  fmt_number(columns = users, decimals = 0) |>
+  tab_options(table.font.size = px(14))
+```
+
+## How this page was built
+
+The workflow behind everything above is the same pipeline marketing teams use to move analytics out of the GA4 interface and into a reproducible report:
+
+1. **Collect.** A GA4 tag on every page of this site records events as visitors browse.
+2. **Store.** GA4 exports those events to BigQuery once a day, where each day becomes its own `events_` table.
+3. **Query.** I pull the data into R with the `bigrquery` package and write the analysis in BigQuery SQL.
+4. **Report.** R, `gt`, and `ggplot2` turn the query results into the tables and charts on this page, all rendered through Quarto.
+
+The natural complement to this is a Looker Studio dashboard connected to the same GA4 property, which gives a live, always-current view for quick checks. This page is the reproducible, code-driven side of that same data.
+
+```{r}
+#| label: cleanup
+dbDisconnect(con)
+```
+ 
